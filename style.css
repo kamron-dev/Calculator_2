@@ -1,0 +1,29 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+button {
+    font-size: 45px;
+}
+.upperDisplay {
+    grid-column: 1 / span 4;
+    grid-row: 1 / span 25%;
+}
+.lowerDisplay {
+    grid-column: 1 / span 4;
+} 
+.calculator {
+    border: 5px solid red;
+    height: 75vh;
+    width: 55vh;
+    
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    grid-template-rows: repeat(7, 1fr);
+}
+.spanTwo {
+    grid-column-start: 4;
+    grid-row-start: 6;
+    grid-row-end: 8;
+}
