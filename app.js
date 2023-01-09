@@ -1,9 +1,10 @@
 // Creating variables
 let firstOperator;
 let secondOperator;
-let firtsOperand;
+let firstOperand;
 let secondOperand;
 let result; 
+// let displayValue = '0'
 
 // Creating operator functions
 const add = (num1, num2) => num1 + num2;
@@ -35,7 +36,7 @@ const operate = (num1, operator, num2) => {
 // Dom elements
 
 const upperDisplay = document.querySelector(".upperDisplay")
-const lowerDisplay = document.querySelector(".lowerDisplay")
+// const lowerDisplay = document.querySelector(".lowerDisplay")
 const operandBtns = document.querySelectorAll(".operand")
 const operatorBtns = document.querySelectorAll(".operator")
 
@@ -44,21 +45,53 @@ const equalsBtn = document.querySelector(".equalsBtn")
 const deleteBtn = document.querySelector(".helper-delete")
 const dotBtn = document.querySelector(".helper-dot")
 
-// Buttons populate the lower display
+// Buttons populate the display
 
 operandBtns.forEach(button => {
-    button.addEventListener("click", () =>{
-        lowerDisplay.textContent += button.value
+    button.addEventListener("click", () => { 
+        upperDisplay.textContent += button.value
+        forDisplay()
+        
     })
 })
 
-// clear button
+// operator buttons logic 
 
-clearBtn.addEventListener("click", () =>{
-    lowerDisplay.textContent = ''
+operatorBtns.forEach(button => {
+    button.addEventListener("click", () => {
+        if (!firstOperator && !secondOperator && !firstOperand && !secondOperand) {
+            firstOperator = button.value
+            firstOperand = upperDisplay.textContent
+            
+        } else if (firstOperator && firstOperand) {
+            
+        }
+    })
 })
 
+function forDisplay() {
+    if (upperDisplay.textContent.length >= 9) {
+        upperDisplay.textContent = upperDisplay.textContent.substring(0, 9);
+    }
+}
 
+
+
+
+// clear button
+clearBtn.addEventListener("click", () =>{
+    upperDisplay.textContent = ''
+    firstOperand = null;
+    secondOperand = null;
+    firstOperator = null;
+    secondOperator = null;
+    result = null;
+    
+})
+// delete button
+deleteBtn.addEventListener('click', () => {
+    upperDisplay.textContent = upperDisplay.textContent.slice(0, upperDisplay.textContent.length - 1)
+})
 
 
 
