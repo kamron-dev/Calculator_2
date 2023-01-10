@@ -45,12 +45,19 @@ const equalsBtn = document.querySelector(".equalsBtn")
 const deleteBtn = document.querySelector(".helper-delete")
 const dotBtn = document.querySelector(".helper-dot")
 
-// Buttons populate the display
+// Buttons populate the display with numbers
 
 operandBtns.forEach(button => {
     button.addEventListener("click", () => { 
+       if (firstOperand && firstOperator) {
+        upperDisplay.textContent += button.value
+        secondOperand = upperDisplay.textContent
+        forDisplay()
+       } else {
         upperDisplay.textContent += button.value
         forDisplay()
+       }
+        
         
     })
 })
@@ -62,12 +69,34 @@ operatorBtns.forEach(button => {
         if (!firstOperator && !secondOperator && !firstOperand && !secondOperand) {
             firstOperator = button.value
             firstOperand = upperDisplay.textContent
+            upperDisplay.textContent = ''
             
-        } else if (firstOperator && firstOperand) {
+        } else if (firstOperator && firstOperand && secondOperand) {
+            alert("I'm working!")
+            // firstOperand = result
+            result = operate(Number(firstOperand), firstOperator, Number(secondOperand));
+            upperDisplay.textContent = result;
+            firstOperand = result;
+            firstOperator = button.value;
+            upperDisplay.textContent = ''
+
             
         }
     })
 })
+
+equalsBtn.addEventListener("click", () => {
+    showEquals()
+})
+
+function showEquals() {
+    result = operate(Number(firstOperand), firstOperator, Number(secondOperand))
+    upperDisplay.textContent = result;
+    firstOperand = null;
+    firstOperator = null;
+    secondOperand = null; 
+
+}
 
 function forDisplay() {
     if (upperDisplay.textContent.length >= 9) {
