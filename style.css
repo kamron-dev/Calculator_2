@@ -20,10 +20,10 @@ button {
 }
 
 .calculator {
-    border: 5px solid red;
+    border: 15px solid red;
     height: 75vh;
     width: 55vh;
-    
+    border-radius: 15px;
     display: grid;
     grid-template-columns: repeat(4, 25%);
     grid-template-rows: repeat(7, 1fr);
@@ -34,15 +34,15 @@ button {
     grid-row-end: 8;
 }
 
-.upperDisplay, .lowerDisplay {
+.upperDisplay {
     font-size: 95px;
     display: flex;
     flex-direction: row-reverse;
-    border: 3px solid yellow;
+    
 }
 button:hover {
-    background-color: darkviolet;
+    background-color: rgb(56, 218, 22);
 }
 .pressed:focus {
-    background-color: red;
+    background-color: rgb(244, 0, 10);
 }

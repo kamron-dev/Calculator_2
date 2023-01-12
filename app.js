@@ -6,11 +6,15 @@ let secondOperand;
 let result; 
 // let displayValue = '0'
 
+
+
+
 // Creating operator functions
 const add = (num1, num2) => num1 + num2;
 const subtract = (num1, num2) => num1 - num2; 
 const multiply = (num1, num2) => num1 * num2;
-const divide = (num1, num2) => num1 / num2; 
+const divide = (num1, num2) => num1 / num2;
+
 
 // Creating the operate function to handle the operations 
 
@@ -25,13 +29,14 @@ const operate = (num1, operator, num2) => {
         case "*":
             return multiply(num1, num2)
             
-        case "÷":
+        case "÷": 
             return divide(num1, num2)
             
         default:
             return null;              
     }
 }
+
 
 // Dom elements
 
@@ -47,15 +52,26 @@ const dotBtn = document.querySelector(".helper-dot")
 
 // Buttons populate the display with numbers
 
+
 operandBtns.forEach(button => {
     button.addEventListener("click", () => { 
-       if (firstOperand && firstOperator) {
+       if (result && firstOperator) {
+            if(Number(upperDisplay.textContent) === result) upperDisplay.textContent = ''
+            // console.log("numbers 2nd option")
+            upperDisplay.textContent += button.value
+            secondOperand = upperDisplay.textContent
+            forDisplay()
+       } else if (firstOperand && firstOperator) {
+        // console.log("numbers 1st option")
         upperDisplay.textContent += button.value
         secondOperand = upperDisplay.textContent
         forDisplay()
+
        } else {
+        // console.log("numbers 3rd option")
         upperDisplay.textContent += button.value
         forDisplay()
+
        }
         
         
@@ -72,15 +88,15 @@ operatorBtns.forEach(button => {
             upperDisplay.textContent = ''
             
         } else if (firstOperator && firstOperand && secondOperand) {
-            alert("I'm working!")
-            // firstOperand = result
             result = operate(Number(firstOperand), firstOperator, Number(secondOperand));
             upperDisplay.textContent = result;
             firstOperand = result;
             firstOperator = button.value;
-            upperDisplay.textContent = ''
+            // upperDisplay.textContent = ''
 
             
+        } else if (result && firstOperand) {
+            firstOperator = button.value
         }
     })
 })
@@ -90,9 +106,9 @@ equalsBtn.addEventListener("click", () => {
 })
 
 function showEquals() {
-    result = operate(Number(firstOperand), firstOperator, Number(secondOperand))
+    result = (operate(Number(firstOperand), firstOperator, Number(secondOperand)))
     upperDisplay.textContent = result;
-    firstOperand = null;
+    firstOperand = result;
     firstOperator = null;
     secondOperand = null; 
 
