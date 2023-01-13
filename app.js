@@ -41,7 +41,6 @@ const operate = (num1, operator, num2) => {
 // Dom elements
 
 const upperDisplay = document.querySelector(".upperDisplay")
-// const lowerDisplay = document.querySelector(".lowerDisplay")
 const operandBtns = document.querySelectorAll(".operand")
 const operatorBtns = document.querySelectorAll(".operator")
 
@@ -49,6 +48,7 @@ const clearBtn = document.querySelector(".helper-clear")
 const equalsBtn = document.querySelector(".equalsBtn")
 const deleteBtn = document.querySelector(".helper-delete")
 const dotBtn = document.querySelector(".helper-dot")
+const percentBtn = document.querySelector(".helper-percent")
 
 // Buttons populate the display with numbers
 
@@ -88,7 +88,8 @@ operatorBtns.forEach(button => {
             upperDisplay.textContent = ''
             
         } else if (firstOperator && firstOperand && secondOperand) {
-            result = operate(Number(firstOperand), firstOperator, Number(secondOperand));
+            // result = operate(Number(firstOperand), firstOperator, Number(secondOperand));
+            showResult();
             upperDisplay.textContent = result;
             firstOperand = result;
             firstOperator = button.value;
@@ -105,8 +106,13 @@ equalsBtn.addEventListener("click", () => {
     showEquals()
 })
 
+percentBtn.addEventListener("click", () => {
+    upperDisplay.textContent = Number(upperDisplay.textContent) / 100
+})
+
 function showEquals() {
-    result = (operate(Number(firstOperand), firstOperator, Number(secondOperand)))
+    // result = (operate(Number(firstOperand), firstOperator, Number(secondOperand)))
+    showResult()
     upperDisplay.textContent = result;
     firstOperand = result;
     firstOperator = null;
@@ -140,5 +146,9 @@ deleteBtn.addEventListener('click', () => {
 
 
 
-// console.table(operatorBtns)
-// console.log(deleteBtn)
+function showResult() {
+    result = (operate(Number(firstOperand), firstOperator, Number(secondOperand)))
+    if (result.length >= 9) result.toFixed(9);
+    return result 
+    
+}
