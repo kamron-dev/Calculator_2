@@ -19,6 +19,8 @@ button {
     flex-direction: column;
     text-align: end;
     font-size: 70px;
+    padding-top: 165px;
+    padding-right: 15px;
     
     
 }
