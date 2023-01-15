@@ -29,13 +29,21 @@ button {
 .calculator {
     border: 15px solid orange;
     height: 75vh;
-    width: 55vw;
+    width: 30vw;
     border-radius: 15px;
     display: grid;
     grid-template-columns: repeat(4, 25%);
     grid-template-rows: repeat(7, 1fr);
     background-color: rgba(31, 31, 31, 0.726);
 }
+@media screen and (max-width: 414px) {
+    .calculator {
+        width: 100vw;
+    }
+    
+}
+
+
 .spanTwo {
     grid-column-start: 4;
     grid-row-start: 6;
